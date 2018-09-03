@@ -10,7 +10,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 app.get("/", (req, res) => {
-  res.send("PRIVATE BLOCKCHAIN PRIVATE API");
+  res.send("PRIVATE BLOCKCHAIN API");
 });
 
 // ROUTES

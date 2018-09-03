@@ -69,14 +69,11 @@ class Blockchain {
 
     // Block hash with SHA256 using newBlock and converting to a string
     newBlock.hash = SHA256(JSON.stringify(newBlock)).toString();
-    console.log("BLOCK TO ADD: ", JSON.stringify(newBlock));
+
     // Adding block object to chain
     this.addBlockToDB(newBlock.height, JSON.stringify(newBlock))
       .then(() => {
         return this.getBlockFromDB(newBlock.height);
-      })
-      .then(value => {
-        console.log("GOT: ", value);
       })
       .catch(function(err) {
         console.error(err);
@@ -205,22 +202,5 @@ class Blockchain {
   }
 }
 
-blockchain = new Blockchain();
-
-(function theLoop(i) {
-  setTimeout(async () => {
-    await blockchain.addBlock(new Block(`Testing data ${i}`));
-    if (--i) theLoop(i);
-  }, 100);
-})(10);
-
-// (async () => {
-//   await blockchain.addBlock(new Block("Second Block"));
-//   await blockchain.addBlock(new Block("Third Block"));
-//   await blockchain.addBlock(new Block("Fourth Block"));
-//   await blockchain.addBlock(new Block("Fifth Block"));
-//   await blockchain.addBlock(new Block("Sixth Block"));
-//   await blockchain.addBlock(new Block("Seventh Block"));
-// })();
-
-setTimeout(() => blockchain.validateChain(), 3000);
+module.exports.BlockChain = Blockchain;
+module.exports.Block = Block;
