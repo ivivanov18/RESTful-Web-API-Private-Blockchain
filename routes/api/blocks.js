@@ -5,6 +5,11 @@ const Block = require("../../simpleChain").Block;
 
 let simpleChain = new Blockchain();
 
+/**
+ * @route GET api/blocks/block/:height
+ * @desc gets the block at the specified height
+ * @access Public
+ */
 router.get("/block/:height", async (req, res) => {
   try {
     const { height } = req.params;
@@ -17,6 +22,11 @@ router.get("/block/:height", async (req, res) => {
   }
 });
 
+/**
+ * @route POST api/blocks/block
+ * @desc creates the block with the specified body
+ * @access Public
+ */
 router.post("/block", async (req, res) => {
   try {
     const { body } = req.body;
