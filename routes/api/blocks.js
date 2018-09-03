@@ -6,16 +6,20 @@ const Block = require("../../simpleChain").Block;
 let simpleChain = new Blockchain();
 
 router.get("/block/:height", async (req, res) => {
-  const { height } = req.params;
-  const block = await simpleChain.getBlock(height);
-  res.json({
-    block: block
-  });
+  try {
+    const { height } = req.params;
+    const block = await simpleChain.getBlock(height);
+    res.status(200).json({
+      block: block
+    });
+  } catch (error) {
+    console.log(error);
+  }
 });
 
 router.post("/block", async (req, res) => {
-  const { body } = req.body;
   try {
+    const { body } = req.body;
     const blockAdded = await simpleChain.addBlock(new Block(body));
     res.json({
       addedBlock: blockAdded
