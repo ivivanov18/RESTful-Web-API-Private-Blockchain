@@ -11,14 +11,16 @@ let simpleChain = new Blockchain();
  * @access Public
  */
 router.get("/block/:height", async (req, res) => {
+  const { height } = req.params;
   try {
-    const { height } = req.params;
     const block = await simpleChain.getBlock(height);
     res.status(200).json({
-      block: block
+      blockRequested: block
     });
   } catch (error) {
-    console.log(error);
+    res.status(404).json({
+      error: `Block at the requested height - ${height} - is not found`
+    });
   }
 });
 
