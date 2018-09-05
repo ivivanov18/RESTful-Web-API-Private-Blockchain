@@ -37,6 +37,4 @@ Through _Postman_ or run in the terminal the command `curl -i -X "POST" "http://
 
 ## TODO
 
-- Change port
 - Adapt URL to match preferred url paths
-- Change entry point
