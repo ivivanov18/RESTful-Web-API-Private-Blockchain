@@ -36,5 +36,3 @@ Through _Postman_ or run in the terminal the command `curl -i http://localhost:8
 Through _Postman_ or run in the terminal the command `curl -i -X "POST" "http://localhost:8000/block" -H 'Content-Type: application/json' -d $'{"body":"{BODY CONTENT}"}'` and replace **BODY CONTENT** by the desired payload.
 
 ## TODO
-
-- Adapt URL to match preferred url paths
