@@ -39,10 +39,10 @@ router.post("/block", async (req, res) => {
     if (!isValid) {
       return res.status(400).json(errors);
     }
-    const blockAdded = await simpleChain.addBlock(new Block(body));
-    res.json({
-      addedBlock: blockAdded
-    });
+    await simpleChain.addBlock(new Block(body));
+    const blockHeight = await simpleChain.getBlockHeight();
+    const lastBlock = await simpleChain.getBlock(blockHeight);
+    res.status(201).send({ blockAdded: lastBlock });
   } catch (error) {
     console.log(error);
   }

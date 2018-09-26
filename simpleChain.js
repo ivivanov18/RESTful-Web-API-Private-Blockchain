@@ -75,7 +75,10 @@ class Blockchain {
       .then(() => {
         return this.getBlockFromDB(newBlock.height);
       })
-      .then(value => value)
+      .then(value => {
+        console.log("VALUE GOT From adding:", value);
+        return value;
+      })
       .catch(function(err) {
         console.error(err);
       });
