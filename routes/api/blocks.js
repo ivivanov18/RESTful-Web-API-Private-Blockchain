@@ -3,6 +3,8 @@ const router = express.Router();
 const Blockchain = require("../../simpleChain").BlockChain;
 const Block = require("../../simpleChain").Block;
 
+const validateBlock = require("../../validation/validateBlock");
+
 let simpleChain = new Blockchain();
 
 /**
@@ -32,6 +34,11 @@ router.get("/block/:height", async (req, res) => {
 router.post("/block", async (req, res) => {
   try {
     const { body } = req.body;
+    const { isValid, errors } = validateBlock(body);
+
+    if (!isValid) {
+      return res.status(400).json(errors);
+    }
     const blockAdded = await simpleChain.addBlock(new Block(body));
     res.json({
       addedBlock: blockAdded
