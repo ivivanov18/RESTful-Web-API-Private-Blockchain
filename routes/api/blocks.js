@@ -34,7 +34,7 @@ router.get("/block/:height", async (req, res) => {
 router.post("/block", async (req, res) => {
   try {
     const { body } = req.body;
-    const { isValid, errors } = validateBlock(body);
+    const { isValid, errors } = validateBlock(req.body);
 
     if (!isValid) {
       return res.status(400).json(errors);
